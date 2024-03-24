@@ -3,6 +3,7 @@ import { useAppSelector } from "./store/hook";
 import { updateBoard } from "./store";
 import { createBoard } from "./utils/createBoard";
 import { useDispatch } from "react-redux";
+import Board from "./components/Board";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,11 @@ const App = () => {
     dispatch(updateBoard(createBoard(boardSize)));
   }, [boardSize, dispatch]);
 
-  return <div>App</div>;
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <Board />
+    </div>
+  );
 };
 
 export default App;
