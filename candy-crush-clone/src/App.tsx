@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useAppSelector } from "./store/hook";
-import { updateBoard } from "./store";
+import { moveBelow, updateBoard } from "./store";
 import { createBoard } from "./utils/createBoard";
 import { useDispatch } from "react-redux";
 import Board from "./components/Board";
@@ -44,6 +44,7 @@ const App = () => {
       );
       checkForRowOfThree(newBoard, boardSize, generateInvalidMoves(boardSize));
       dispatch(updateBoard(newBoard));
+      dispatch(moveBelow());
     }, 150);
     return () => clearInterval(timeout);
   }, [board, boardSize, dispatch]);
