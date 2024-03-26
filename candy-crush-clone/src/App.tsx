@@ -4,10 +4,15 @@ import { updateBoard } from "./store";
 import { createBoard } from "./utils/createBoard";
 import { useDispatch } from "react-redux";
 import Board from "./components/Board";
-import { checkForColumnOfThree, isColumnOfFour } from "./utils/moveCheckLogic";
+import {
+  checkForColumnOfThree,
+  checkForRowFour,
+  isColumnOfFour,
+} from "./utils/moveCheckLogic";
 import {
   formulaForColumnOfFour,
   formulaForColumnOfThree,
+  generateInvalidMoves,
 } from "./utils/formulas";
 
 const App = () => {
@@ -30,6 +35,11 @@ const App = () => {
         newBoard,
         boardSize,
         formulaForColumnOfThree(boardSize)
+      );
+      checkForRowFour(
+        newBoard,
+        boardSize,
+        generateInvalidMoves(boardSize, true)
       );
       dispatch(updateBoard(newBoard));
     }, 150);

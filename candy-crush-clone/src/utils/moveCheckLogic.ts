@@ -25,6 +25,29 @@ export const isColumnOfFour = (
   }
 };
 
+export const checkForRowFour = (
+  newBoard: string[],
+  boardSize: number,
+  invalidMoves: number[]
+) => {
+  for (let i: number = 0; i < boardSize * boardSize; i++) {
+    const rowOfFour = [i, i + 1, i + 2, i + 3];
+    const decidedColor: string = newBoard[i];
+
+    const isBlank: boolean = newBoard[i] === "";
+    if (invalidMoves.includes(i)) continue;
+
+    if (
+      rowOfFour.every(
+        (candy: number) => newBoard[candy] === decidedColor && !isBlank
+      )
+    ) {
+      rowOfFour.forEach((candy: number) => (newBoard[candy] = ""));
+      return true;
+    }
+  }
+};
+
 export const checkForColumnOfThree = (
   newBoard: String[],
   boardSize: number,
