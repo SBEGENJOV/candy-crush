@@ -25,7 +25,7 @@ export const isColumnOfFour = (
   }
 };
 
-export const checkForRowFour = (
+export const checkForRowOfFour = (
   newBoard: string[],
   boardSize: number,
   invalidMoves: number[]

@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import Board from "./components/Board";
 import {
   checkForColumnOfThree,
-  checkForRowFour,
+  checkForRowOfFour,
   checkForRowOfThree,
   isColumnOfFour,
 } from "./utils/moveCheckLogic";
@@ -37,7 +37,7 @@ const App = () => {
         boardSize,
         formulaForColumnOfThree(boardSize)
       );
-      checkForRowFour(
+      checkForRowOfFour(
         newBoard,
         boardSize,
         generateInvalidMoves(boardSize, true)
