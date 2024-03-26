@@ -7,6 +7,7 @@ import Board from "./components/Board";
 import {
   checkForColumnOfThree,
   checkForRowFour,
+  checkForRowOfThree,
   isColumnOfFour,
 } from "./utils/moveCheckLogic";
 import {
@@ -41,6 +42,7 @@ const App = () => {
         boardSize,
         generateInvalidMoves(boardSize, true)
       );
+      checkForRowOfThree(newBoard, boardSize, generateInvalidMoves(boardSize));
       dispatch(updateBoard(newBoard));
     }, 150);
     return () => clearInterval(timeout);

@@ -68,3 +68,27 @@ export const checkForColumnOfThree = (
     }
   }
 };
+
+export const checkForRowOfThree = (
+  newBoard: string[],
+  boardSize: number,
+  invalidMovesForColumnOfThree: number[]
+) => {
+  for (let i = 0; i < boardSize * boardSize; i++) {
+    const rowOfThree = [i, i + 1, i + 2];
+    const decidedColor = newBoard[i];
+
+    const isBlank = newBoard[i] === "";
+
+    if (invalidMovesForColumnOfThree.includes(i)) continue;
+
+    if (
+      rowOfThree.every(
+        (square) => newBoard[square] === decidedColor && !isBlank
+      )
+    ) {
+      rowOfThree.forEach((square) => (newBoard[square] = ""));
+      return true;
+    }
+  }
+};
