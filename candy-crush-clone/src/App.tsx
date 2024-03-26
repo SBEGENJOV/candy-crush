@@ -4,8 +4,11 @@ import { updateBoard } from "./store";
 import { createBoard } from "./utils/createBoard";
 import { useDispatch } from "react-redux";
 import Board from "./components/Board";
-import { isColumnOfFour } from "./utils/moveCheckLogic";
-import { formulaForColumnOfFour } from "./utils/formulas";
+import { checkForColumnOfThree, isColumnOfFour } from "./utils/moveCheckLogic";
+import {
+  formulaForColumnOfFour,
+  formulaForColumnOfThree,
+} from "./utils/formulas";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,6 +26,11 @@ const App = () => {
     const timeout = setTimeout(() => {
       const newBoard = [...board];
       isColumnOfFour(newBoard, boardSize, formulaForColumnOfFour(boardSize));
+      checkForColumnOfThree(
+        newBoard,
+        boardSize,
+        formulaForColumnOfThree(boardSize)
+      );
       dispatch(updateBoard(newBoard));
     }, 150);
     return () => clearInterval(timeout);
